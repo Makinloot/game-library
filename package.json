@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "name": "game-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tornike Epitashvili",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.2.8"
+  }
+}
