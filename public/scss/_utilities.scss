@@ -1,0 +1,63 @@
+.container {
+    width: min(100%, 75rem);
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+// links
+%link {
+    position: relative;
+    font-size: $fs-small;
+}
+
+%link::after {
+    content: '';
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    width: 0%;
+    border: 0px solid;
+    transition: .3s;
+}
+
+%link:hover::after {
+    left: 0;
+    width: 100%;
+    border: 1px solid;
+}
+
+.link-primary {
+    @extend %link;
+}
+
+// margin & paddings
+$amounts: (1, 2, 3, 4, 5);
+
+@each $item in $amounts {
+    .m-#{$item} {
+        margin: #{$item}rem;
+    }
+    .my-#{$item} {
+        margin: #{$item}rem 0;
+    }
+    .mauto-#{$item} {
+        margin: #{$item}rem auto;
+    }
+    .p-#{$item} {
+        padding: #{$item}rem;
+    }
+    .py-#{$item} {
+        padding: #{$item}rem 0;
+    }
+}

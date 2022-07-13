@@ -1,0 +1,9 @@
+@media (max-width: 480px) {
+    .header {
+
+        &__wrapper {
+            justify-content: center;
+            gap: .5rem;
+        }
+    }
+}

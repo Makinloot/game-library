@@ -1,4 +1,30 @@
 @import 'fonts';
 @import 'variables';
 @import 'reset';
-@import 'utility';
+@import 'utilities';
+
+// header styles
+.header {
+
+    &__wrapper {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__logo h1 {
+        font-family: $ff-secondary;
+        font-size: $fs-big + .2rem;
+    }
+
+    &__menu {
+        gap: 1.25rem;
+    }
+
+    &__menu-link {
+        @extend %link;
+    }
+}
+
+
+
+@import 'responsive';
