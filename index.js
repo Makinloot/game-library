@@ -9,7 +9,7 @@ app.listen(port, console.log('running...'));
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
-// send RAWG api data to client
+// send RAWG api data to hero section (thumbnail slider)
 app.get('/api', async (req, res) => {
     let KEY = process.env.API_KEY; // api key
     let randomNumber = Math.floor(Math.random() * 50); // random number up to 50
@@ -21,4 +21,18 @@ app.get('/api', async (req, res) => {
     const game_data = await game_res.json();
 
     res.json(game_data); // send fetched data
-})
+});
+
+// send RAWG api data to draggable slider
+app.get('/slider', async (req, res) => {
+    let KEY = process.env.API_KEY; // api key
+    let randomNumber = Math.floor(Math.random() * 1001); // random number up to 1000
+    if(randomNumber < 1) randomNumber++;
+
+    // fetch RAWG api
+    const url = `https://api.rawg.io/api/games?key=${KEY}&page=${randomNumber}`;
+    const game_res = await fetch(url);
+    const game_data = await game_res.json();
+
+    res.json(game_data); // send fetched data
+});

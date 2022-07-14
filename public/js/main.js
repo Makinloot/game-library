@@ -3,9 +3,18 @@ window.onload = async (e) => {
     const data = await res.json();
     console.log(data);
     renderSlider(data);
-    sliderData(data);
-
+    // sliderData(data);
+    random1000();
 }
+
+async function random1000() {
+  const s_res = await fetch('/slider');
+  const s_data = await s_res.json();
+
+  sliderData(s_data);
+}
+
+
 
 // get data for hero section slider from api, initialize slider, add change slider function
 function renderSlider(data) {
