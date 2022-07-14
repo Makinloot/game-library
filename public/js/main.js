@@ -1,9 +1,9 @@
-import 'https://unpkg.com/swiper/swiper-bundle.min.js';
 window.onload = async (e) => {
     const res = await fetch('/api');
     const data = await res.json();
     console.log(data);
     renderSlider(data);
+    sliderData(data);
 
 }
 
@@ -32,7 +32,7 @@ function renderSlider(data) {
         <h3>${choice.name}</h3>
       </div>`;
     imagesArray.innerHTML += root;
-  })
+  });
 
   const thumbImages = document.querySelectorAll('.thumbnail-item');
   // change main img on thumbnail click
@@ -53,5 +53,48 @@ function renderSlider(data) {
         `;
     });
   });
+}
 
+// initialize swiperjs slider
+import 'https://unpkg.com/swiper/swiper-bundle.min.js';
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 4.8,
+  spaceBetween: 30,
+  freeMode: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
+// get data for draggable slider
+function sliderData(data) {
+  // slider paths
+  const sliderWrapper = document.getElementById("free-mode-slider");
+  let sliderItems = data.results;
+  // console.log(sliderItems);
+  sliderItems.forEach((item) => {
+    let genres = item.genres.map((genre) => genre.name).slice(0, 2).join(', '); // select first two name from genres array
+    let sliderPaths = {
+      img: item.background_image,
+      name: item.name,
+      genre: genres,
+      rating: item.rating,
+      ratings_count: item.ratings_count
+    };
+
+    // slider HTML
+    sliderWrapper.innerHTML += `
+       <div class='swiper-slide'>
+           <div class='swiper-img'>
+               <img src=${sliderPaths.img} alt=${sliderPaths.name}>
+           </div>
+       <div class='swiper-details'>
+               <h3 class='swiper-heading'>${sliderPaths.name}</h3>
+               <h4 class='swiper-genre'>${sliderPaths.genre}</h4>
+               <span>Ratings: ${sliderPaths.rating} <span class='swiper-ratings-count'>(${sliderPaths.ratings_count})</span></span>
+           </div>
+       </div>
+    `;
+  });
 }
