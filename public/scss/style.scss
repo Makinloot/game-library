@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'reset';
 @import 'utilities';
+@import 'https://unpkg.com/swiper/swiper-bundle.min.css';
 
 // header styles
 .header {
@@ -25,6 +26,62 @@
     }
 }
 
+.hero {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    gap: .5rem;
+    height: min(448px, 448px);
+    padding: .5rem;
+    background-color: rgb(116, 101, 101);
 
+    &__primary {
+        position: relative;
+
+        & img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        & h2 {
+            position: relative;
+            margin: 1rem;
+            font-family: $ff-secondary;
+            z-index: 1;
+            mix-blend-mode: difference;
+        }
+    }
+
+    &__secondary {
+        grid-template-rows: repeat(5, 1fr);
+        background-color: rgb(32, 53, 53);
+        row-gap: .3rem;
+        padding: .2rem;
+
+        .thumbnail-item {
+            justify-content: flex-start;
+            gap: .3rem;
+            cursor: pointer;
+
+            & img {
+                width: 56px;
+                height: 100%;
+                object-fit: cover;
+                pointer-events: none;
+            }
+
+            & h3 {
+                font-size: $fs-small;
+                font-weight: 600;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+.active {
+    outline: 1px solid red;
+}
 
 @import 'responsive';

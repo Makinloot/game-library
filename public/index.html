@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>GameLibrary</title>
-</head>
-<body class="p-1">
+  </head>
+  <body class="p-1">
     <!-- header -->
     <header class="header">
-        <div class="container">
-            <div class="header__wrapper wrapper flex py-1">
-                <div class="header__logo">
-                    <h1>GameLibrary</h1>
-                </div>
-                <!-- header menu -->
-                <div class="header__menu flex">
-                    <a href="#" class="header__menu-link">Home</a>
-                    <a href="#" class="header__menu-link">Browse</a>
-                    <a href="#" class="header__menu-link">Discover</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="header__wrapper wrapper flex py-1">
+          <div class="header__logo">
+            <h1>GameLibrary</h1>
+          </div>
+          <!-- header menu -->
+          <div class="header__menu flex">
+            <a href="#" class="header__menu-link">Home</a>
+            <a href="#" class="header__menu-link">Browse</a>
+            <a href="#" class="header__menu-link">Discover</a>
+          </div>
         </div>
+      </div>
     </header>
-    <script src="./js/main.js"></script>
-</body>
+    <!-- main -->
+    <main class="main">
+      <div class="container">
+        <div class="main__wrapper wrapper">
+          <section class="hero grid">
+            <div class="hero__primary" id="current-img"></div>
+            <div class="hero__secondary grid" id="thumbnail-images"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>
