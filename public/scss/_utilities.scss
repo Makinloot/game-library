@@ -19,6 +19,8 @@
 %link {
     position: relative;
     font-size: $fs-small;
+    text-transform: capitalize;
+    white-space: nowrap;
 }
 
 %link::after {
@@ -39,6 +41,22 @@
 
 .link-primary {
     @extend %link;
+}
+
+// buttons
+%button {
+    background-color: $clr-primary;
+    border: none;
+    padding: .5rem 1rem;
+    cursor: pointer;
+}
+
+%button:hover {
+    transform: scale(0.9);
+}
+
+.button-primary {
+    @extend %button;
 }
 
 // margin & paddings

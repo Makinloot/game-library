@@ -12,11 +12,6 @@
         flex-wrap: wrap;
     }
 
-    &__logo h1 {
-        font-family: $ff-secondary;
-        font-size: $fs-big + .2rem;
-    }
-
     &__menu {
         gap: 1.25rem;
     }
@@ -32,7 +27,7 @@
     grid-template-columns: 80% 1fr;
     gap: .5rem;
     height: min(448px, 448px);
-    padding: .3rem;
+    padding: .5rem;
     background-color: $clr-secondary;
     border-radius: 8px;
 
@@ -135,6 +130,69 @@
         font-size: $fs-small;
         margin: 6px 0;
         color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+// footer styles
+.footer {
+
+    &__form {
+        padding: 3rem;
+        gap: 3rem;
+        flex-wrap: wrap;
+        outline: 1px solid $clr-darklight;
+        border-radius: .5rem;
+
+        label {
+            font-family: $ff-primary;
+            font-size: $fs-big;
+        }
+    }
+
+    &__input-wrapper {
+        position: relative;
+        width: 350px;
+        max-width: 100%;
+
+        input[type=search] {
+            padding: .5rem 1rem;
+            font-size: $fs-small;
+            color: $clr-dark;
+            width: 100%;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            box-shadow: 2px 2px  10px $clr-primary;
+        }
+
+        input[type=submit] {
+            @extend %button;
+            position: absolute;
+            right: 0rem;
+            height: 100%;
+            border-radius: 0 5px 5px 0;
+        }
+    }
+
+    &__menu-wrapper {
+        justify-content: space-between;
+    }
+
+    &__menu {
+        gap: 1.5rem;
+    }
+
+    &__menu-link {
+        @extend %link;
+    }
+
+    &__socials {
+        gap: 1.5rem;
+
+        img {
+            max-width: 24px;
+            max-height: 24px;
+        }
     }
 }
 

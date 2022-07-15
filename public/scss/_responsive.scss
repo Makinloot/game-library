@@ -62,6 +62,26 @@
             }
         }
     }
+
+    // footer styles {
+        .footer {
+
+            &__form {
+                padding: 3rem 1rem;
+                gap: 2rem;
+            }
+
+            &__menu-wrapper {
+                gap: 1.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            &__menu {
+                gap: 1rem;
+            }
+
+        }
 }
 
 @media (max-width: 320px) {
@@ -76,4 +96,5 @@
             }
         }
     }
+
 }
