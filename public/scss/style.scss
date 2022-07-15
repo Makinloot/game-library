@@ -30,7 +30,7 @@
 .hero {
     display: grid;
     grid-template-columns: 80% 1fr;
-    gap: .3rem;
+    gap: .5rem;
     height: min(448px, 448px);
     padding: .3rem;
     background-color: $clr-secondary;
@@ -53,7 +53,7 @@
             margin: 1rem;
             padding: .5rem;
             font-family: $ff-secondary;
-            background-color: $clr-secondary;
+            background-color: rgba(49, 49, 49, 0.7);
             border-radius: .875rem;
             z-index: 1;
         }
@@ -64,15 +64,18 @@
         row-gap: .3rem;
 
         .thumbnail-item {
+            position: relative;
             justify-content: flex-start;
             gap: .3rem;
             padding: .1rem;
             border-radius: 0 8px 8px 0;
             cursor: pointer;
+            user-select: none;
             transition: .3s;
 
-            &:hover {
-                background-color: rgb(64, 64, 64);
+            &:active {
+                transform: scale(.98);
+                background-color: rgba(240, 248, 255, 0.325);
             }
 
             & img {
@@ -80,9 +83,11 @@
                 height: 100%;
                 object-fit: cover;
                 pointer-events: none;
+                border-radius: 8px;
             }
 
             & h3 {
+                position: relative;
                 font-size: $fs-small - .125rem;
                 font-weight: 600;
                 pointer-events: none;

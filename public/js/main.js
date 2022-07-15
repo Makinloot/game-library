@@ -1,10 +1,11 @@
+import 'https://unpkg.com/swiper/swiper-bundle.min.js';
 window.onload = async (e) => {
     const res = await fetch('/api');
     const data = await res.json();
     console.log(data);
     renderSlider(data);
-    // sliderData(data);
     random1000();
+    swiperFree();
 }
 
 async function random1000() {
@@ -13,7 +14,6 @@ async function random1000() {
 
   sliderData(s_data);
 }
-
 
 
 // get data for hero section slider from api, initialize slider, add change slider function
@@ -65,16 +65,30 @@ function renderSlider(data) {
 }
 
 // initialize swiperjs slider
-import 'https://unpkg.com/swiper/swiper-bundle.min.js';
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 4.8,
-  spaceBetween: 30,
-  freeMode: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-});
+
+
+function swiperFree() {
+  const {width} = document.body.getBoundingClientRect();
+  let slidePerView = 4.8;
+
+  if(width < 1024) slidePerView = 3.5;
+  if(width < 768) slidePerView = 3;
+  if(width < 640) slidePerView = 2.5;
+  if(width < 525) slidePerView = 2.2;
+  if(width < 480) slidePerView = 1.8;
+  if(width < 385) slidePerView = 1.5;
+  if(width < 320) slidePerView = 1.3;
+
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: slidePerView,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+}
 
 // get data for draggable slider
 function sliderData(data) {

@@ -1,0 +1,1 @@
+For free mode slider it is required to reload for responsive to work while testing it in developers tool
