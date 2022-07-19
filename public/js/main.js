@@ -4,15 +4,17 @@ window.onload = async (e) => {
     const data = await res.json();
     console.log(data);
     renderSlider(data);
-    random1000();
+    random150();
     swiperFree();
 }
 
-async function random1000() {
+async function random150() {
   const s_res = await fetch('/slider');
   const s_data = await s_res.json();
 
   sliderData(s_data);
+  // queryGameId(s_data);
+  idInSession();
 }
 
 
@@ -47,10 +49,8 @@ function renderSlider(data) {
   // change main img on thumbnail click
   thumbImages.forEach(item => {
     item.addEventListener('click', (e) => {
-      // delete current img HTML
-      currentImg.innerHTML = '';
-      // push clicked element in children array
-      const children = [];
+      currentImg.innerHTML = ''; // delete current img HTML
+      const children = []; // push clicked element in children array
       children.push(e.target);
       // elements from children array
       let imgSrc = children[0].children[0].src;
@@ -96,28 +96,40 @@ function sliderData(data) {
   const sliderWrapper = document.getElementById("free-mode-slider");
   let sliderItems = data.results;
   // console.log(sliderItems);
-  sliderItems.forEach((item) => {
+  sliderItems.forEach( item => {
     let genres = item.genres.map((genre) => genre.name).slice(0, 2).join(', '); // select first two name from genres array
     let sliderPaths = {
       img: item.background_image,
       name: item.name,
       genre: genres,
       rating: item.rating,
-      ratings_count: item.ratings_count
+      ratings_count: item.ratings_count,
+      id: item.id
     };
 
     // slider HTML
     sliderWrapper.innerHTML += `
-       <div class='swiper-slide'>
-           <div class='swiper-img'>
-               <img src=${sliderPaths.img} alt=${sliderPaths.name}>
-           </div>
-       <div class='swiper-details'>
-               <h3 class='swiper-heading'>${sliderPaths.name}</h3>
-               <h4 class='swiper-genre'>${sliderPaths.genre}</h4>
-               <span>Ratings: ${sliderPaths.rating} <span class='swiper-ratings-count'>(${sliderPaths.ratings_count})</span></span>
+       <div class='slider__swiper-slide swiper-slide'>
+           <a href='../html/game.html' class='slider-img'>
+               <img src=${sliderPaths.img} alt=${sliderPaths.name} id=${sliderPaths.id}>
+           </a>
+       <div class='slider-details'>
+               <h3 class='slider-heading'>${sliderPaths.name}</h3>
+               <h4 class='slider-genre'>${sliderPaths.genre}</h4>
+               <span>Ratings: ${sliderPaths.rating} <span class='slider-ratings-count'>(${sliderPaths.ratings_count})</span></span>
            </div>
        </div>
     `;
   });
+}
+
+// returns clicked item id and saves in session storage
+function idInSession() {
+  const games = document.querySelectorAll('.swiper-slide');
+  games.forEach(game => {
+    game.addEventListener('click', (e) => {
+      let id = e.target.id;
+      sessionStorage.setItem('id', id);
+    })
+  })
 }

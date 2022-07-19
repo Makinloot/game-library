@@ -46,6 +46,7 @@
     .header {
 
         &__wrapper {
+            flex-direction: column;
             justify-content: center;
             gap: .5rem;
         }

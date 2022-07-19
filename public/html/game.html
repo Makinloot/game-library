@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header py-2">
+      <div class="container">
+        <div class="header__wrapper wrapper flex">
+          <div class="header__logo">
+            <!-- <h1>GameLibrary</h1> -->
+            <a href="../index.html">
+              <img src="../images/logo.png" alt="logo" />
+            </a>
+          </div>
+          <!-- header menu -->
+          <div class="header__menu flex">
+            <a href="../index.html" class="header__menu-link">Home</a>
+            <a href="#" class="header__menu-link">Browse</a>
+            <a href="#" class="header__menu-link">Discover</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main my-2">
+      <div class="container">
+        <div class="game wrapper grid" id="game-wrapper">
+          <div class="game__slider">
+            <div class="game__swiper swiper mySwiper">
+              <div class="game__swiper-wrapper swiper-wrapper">
+                <div class="game__swiper-slide swiper-slide"><img src="../images/test-img.png" alt=""></div>
+                <div class="game__swiper-slide swiper-slide">Slide 12</div>
+                <div class="game__swiper-slide swiper-slide">Slide 31</div>
+                <div class="game__swiper-slide swiper-slide">Slide 41</div>
+                <div class="game__swiper-slide swiper-slide">Slide 51</div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+          <div class="game__details flex" id="game-details"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer my-3">
+      <div class="container">
+        <div class="footer__wrapper wrapper">
+          <form action="#" class="footer__form flex">
+            <label for="search">Search here</label>
+            <div class="footer__input-wrapper">
+              <input
+                type="search"
+                name="search"
+                id="search"
+                placeholder="Enter name here"
+                autocomplete="off"
+                required
+              />
+              <input type="submit" value="Enter" />
+            </div>
+          </form>
+          <div class="footer__menu-wrapper flex p-1">
+            <nav class="footer__menu flex">
+              <a href="../index.html" class="footer__menu-link">home</a>
+              <a href="#" class="footer__menu-link">about us</a>
+              <a href="#" class="footer__menu-link">contact</a>
+              <a href="#" class="footer__menu-link">partners</a>
+            </nav>
+            <div class="footer__socials flex">
+              <a href="#"
+                ><img src="../images/instagram.png" alt="instagram"
+              /></a>
+              <a href="#"><img src="../images/twitter.png" alt="twitter" /></a>
+              <a href="#"><img src="../images/github.png" alt="github" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../js/game.js"></script>
+  </body>
+</html>

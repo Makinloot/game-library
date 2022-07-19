@@ -3,6 +3,7 @@
 @import 'reset';
 @import 'utilities';
 @import 'https://unpkg.com/swiper/swiper-bundle.min.css';
+@import 'game';
 
 // header styles
 .header {
@@ -10,6 +11,7 @@
     &__wrapper {
         justify-content: space-between;
         flex-wrap: wrap;
+        gap: 1rem;
     }
 
     &__menu {
@@ -92,12 +94,15 @@
 }
 
 // slider section styles
-.swiper {
-    width: 100%;
-    cursor: grab;
-    user-select: none;
+.slider {
 
-    &-wrapper {
+    &__swiper {
+        width: 100%;
+        cursor: grab;
+        user-select: none;
+    }
+
+    &__swiper-wrapper {
         grid-template-columns: repeat(20, 1fr);
 
         &:active {
@@ -105,10 +110,14 @@
         }
     }
 
-    &-slide {
+    &__swiper-slide {
         height: auto;
         flex-direction: column;
         text-transform: capitalize;
+
+        a {
+            display: block;
+        }
     }
 
     &-img {
@@ -194,6 +203,13 @@
             max-height: 24px;
         }
     }
+}
+
+#test {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(66, 45, 45);
+    color: #fff;
 }
 
 @import 'responsive';
