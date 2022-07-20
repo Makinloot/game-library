@@ -12,9 +12,11 @@
     // }
 
     &__swiper-slide {
+        position: relative;
         background-color: rgb(59, 59, 59);
 
         img {
+            position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;

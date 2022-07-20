@@ -24,10 +24,11 @@ window.onload = async () => {
 
     const game_data = data.game_data;
     displayGameData(game_data);
+
     
     
     const media_data = data.media_data;
-    
+    displayGameSliderData(media_data);
     
 }
 
@@ -39,22 +40,15 @@ window.onload = async () => {
 function displayGameData(data) {
     const wrapper = document.getElementById('game-details');
 
-    // const genres = data.tags.forEach( item => {
-    //     return item.name;
-    // })
 
     const genres = data.tags;
     let tagNames = genres.map((genre) => genre.name).slice(0, 5).join(', ');
-    // const tags = genres.map(tag => {
-    //     return tag.name;
-    // });
-    console.log(genres);
 
-    // for(let i = 0; i < tags.length; i++) {
-    //     console.log(tags[i]);
-    // }
+    // console.log(genres);
 
-    console.log('HELLO', tagNames);
+
+
+    // console.log('HELLO', tagNames);
 
     
     const gameData = {
@@ -62,10 +56,13 @@ function displayGameData(data) {
         name: data.name,
         date: data.released,
         description: data.description,
-        tags: tagNames
+        tags: tagNames,
+        reviews_title: data.ratings[0].title,
+        reviews_percent: data.ratings[0].percent,
+        reviews_count: data.ratings_count
     }
 
-    console.log(gameData.tags)
+    // console.log(gameData.tags)
 
     let html = `
         <div class='game__img'>
@@ -75,13 +72,14 @@ function displayGameData(data) {
             <p>${gameData.description}</p>
         </div>
         <div class='game__reviews'>
-            <p>Reviews: 50</p>
+            <p>All Reviews: ${gameData.reviews_count}</p>
+            <p>Mostly: ${gameData.reviews_title} <span>${gameData.reviews_percent}%</span></p>
         </div>
         <div class='game__release'>
             <p>Released: ${gameData.date}</p>
         </div>
         <div class='game__tags flex'>
-            <p>${gameData.tags}</p>
+            <p>Genres: ${gameData.tags}</p>
         </div>
     `;
     
@@ -89,4 +87,17 @@ function displayGameData(data) {
     wrapper.innerHTML = html;
 
     
+}
+
+function displayGameSliderData(data) {
+    const wrapper = document.getElementById('game-slider-main');
+
+    console.log(data);
+    const testImg = data.results[0].image;
+
+    wrapper.innerHTML = `
+        <div class='game__swiper-slide swiper-slide'>
+            <img src='${testImg}'>
+        </div>
+    `
 }
