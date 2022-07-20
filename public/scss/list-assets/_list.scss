@@ -1,0 +1,32 @@
+.list {
+    grid-template-rows: repeat(10, 1fr);
+
+    &__item {
+        justify-content: flex-start;
+        gap: 1rem;
+        background-color: red;
+    }
+
+    &__img {
+        width: 200px;
+        height: 100px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &__item-details {
+        p {
+            width: 200px;
+            max-width: 100%;
+        }
+        img {
+            width: 20px;
+        }
+    }
+
+    &__release {
+        margin-left: 20%;
+    }
+}

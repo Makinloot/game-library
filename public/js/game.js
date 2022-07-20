@@ -32,12 +32,15 @@ function displayGameData(data) {
   const wrapper = document.getElementById("game-details");
   const nameElement = document.getElementById("game-name");
 
-  // return 5 genre from genres
+  // return 3 genre from genres
   const genres = data.tags;
   let tagNames = genres
     .map((genre) => genre.name)
-    .slice(0, 5)
+    .slice(0, 3)
     .join(", ");
+  // return maximum 3 publishers from publishers
+  const publishers = data.publishers;
+  let publishersNames = publishers.map(publisher => publisher.name).join(', ')
 
   // game data object
   const gameData = {
@@ -49,6 +52,7 @@ function displayGameData(data) {
     reviews_title: data.ratings[0].title,
     reviews_percent: data.ratings[0].percent,
     reviews_count: data.ratings_count,
+    publishers: publishersNames
   };
 
   let html = `
@@ -63,8 +67,11 @@ function displayGameData(data) {
             <div class='game__release'>
                 <p>Released: ${gameData.date}</p>
             </div>
+            <div class='game__publishers'>
+              <p>Publishers: ${gameData.publishers}</p>
+            </div>
             <div class='game__tags flex' id='game-tag'>
-                <div> ${gameData.tags} </div>
+                <div>Genres: ${gameData.tags} </div>
             </div>
             <div class='game__desc'>
                 <p>${gameData.description}</p>
@@ -101,3 +108,12 @@ function runSlider() {
     },
   });
 }
+
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('search-btn');
+
+searchBtn.addEventListener('click', (e) => {
+    let value = searchInput.value;
+    sessionStorage.setItem('name', value);
+    console.log(value);
+});

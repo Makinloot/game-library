@@ -43,7 +43,7 @@ app.post("/games", async (req, res) => {
   const resp = await fetch(url);
   const data = await resp.json();
 
-  const mediaUrl = `https://api.rawg.io/api/games/${id}/screenshots?key=${KEY}`;
+  const mediaUrl = `https://api.rawg.io/api/games/${id}/screenshots?key=${KEY}&page_size=10`;
   const mediaResp = await fetch(mediaUrl);
   const mediaData = await mediaResp.json();
 
@@ -54,3 +54,12 @@ app.post("/games", async (req, res) => {
 
   res.json(dataObject);
 });
+
+app.post('/list', async (req, res) => {
+  const name = req.body.name;
+  const url = `https://api.rawg.io/api/games?key=${KEY}&search=${name}&search_precise=true&ordering=-rating&page_size=10&exclude_additions=true`;
+  const resp = await fetch(url);
+  const data = await resp.json();
+
+  res.json(data);
+})

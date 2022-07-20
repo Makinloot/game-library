@@ -1,4 +1,5 @@
 import "https://unpkg.com/swiper/swiper-bundle.min.js";
+
 window.onload = async (e) => {
   const res = await fetch("/api");
   const data = await res.json();
@@ -156,3 +157,13 @@ function idInSession() {
     });
   });
 }
+
+
+const searchInput = document.getElementById('search');
+const searchBtn = document.getElementById('search-btn');
+
+searchBtn.addEventListener('click', (e) => {
+    let value = searchInput.value;
+    sessionStorage.setItem('name', value);
+    console.log(value);
+});
