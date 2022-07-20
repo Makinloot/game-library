@@ -27,11 +27,20 @@ function renderSlider(data) {
   const imagesArray = document.getElementById("thumbnail-images");
   let currentBG = choices[0].background_image;
   let mainHeader = choices[0].name;
+  let currentID = choices[0].id;
 
   currentImg.innerHTML = `
     <img src=${currentBG} alt=${mainHeader} id='current'>
     <h2 id='current-header'>${mainHeader}</h2>
+    <a href='../html/game.html' class='checkout-game' id='${currentID}'>CHECK OUT</a>
   `;
+
+  // go to game.html page with clicked ID data 
+  const checkoutGame = document.querySelector('.checkout-game');
+  checkoutGame.addEventListener('click', (e) => {
+    let id = e.target.id;
+    sessionStorage.setItem('id', id);
+  })
 
   // display data for thumbnail
   choices.forEach((choice) => {
@@ -39,6 +48,7 @@ function renderSlider(data) {
       <div class='thumbnail-item flex'>
         <img src=${choice.background_image} alt=${choice.name}>
         <h3>${choice.name}</h3>
+        <span>${choice.id}</span>
       </div>`;
     imagesArray.innerHTML += root;
   });
@@ -50,16 +60,29 @@ function renderSlider(data) {
       currentImg.innerHTML = ""; // delete current img HTML
       const children = []; // push clicked element in children array
       children.push(e.target);
+      console.log(e.target)
       // elements from children array
       let imgSrc = children[0].children[0].src;
       let headingTxt = children[0].children[1].innerText;
+      let gameID = children[0].children[2].innerText;
       // display children array HTML in current img HTML
       currentImg.innerHTML = `
         <img src=${imgSrc} alt=${headingTxt} id='current'>
         <h2 id='current-header'>${headingTxt}</h2>
+        <a href='../html/game.html' class='checkout' id='${gameID}'>CHECK OUT</a>
         `;
+
+        // go to game.html page with clicked ID data 
+        const checkoutLink = document.querySelector('.checkout');
+        checkoutLink.addEventListener('click', (e) => {
+          let id = e.target.id;
+          sessionStorage.setItem('id', id);
+        })
     });
+
+    
   });
+
 }
 
 // initialize swiperjs slider

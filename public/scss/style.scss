@@ -53,6 +53,16 @@
       border-radius: 0.875rem;
       z-index: 1;
     }
+
+    & a {
+        @extend %button;
+        position: absolute;
+        bottom: .5rem;
+        left: 1rem;
+        color: $clr-light;
+        border-radius: .5rem;
+        z-index: 100;
+    }
   }
 
   &__secondary {
@@ -87,6 +97,10 @@
         font-size: $fs-small - 0.125rem;
         font-weight: 600;
         pointer-events: none;
+      }
+
+      & span {
+        display: none;
       }
     }
   }
