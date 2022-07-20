@@ -1,215 +1,212 @@
-@import 'fonts';
-@import 'variables';
-@import 'reset';
-@import 'utilities';
-@import 'https://unpkg.com/swiper/swiper-bundle.min.css';
-@import 'game';
+@import "https://unpkg.com/swiper/swiper-bundle.min.css";
+@import "fonts";
+@import "variables";
+@import "reset";
+@import "utilities";
+@import "./game-assets/game";
 
 // header styles
 .header {
+  &__wrapper {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    &__wrapper {
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
+  &__menu {
+    gap: 1.25rem;
+  }
 
-    &__menu {
-        gap: 1.25rem;
-    }
-
-    &__menu-link {
-        @extend %link;
-    }
+  &__menu-link {
+    @extend %link;
+  }
 }
 
 // hero styles
 .hero {
-    display: grid;
-    grid-template-columns: 80% 1fr;
-    gap: .5rem;
-    height: min(448px, 448px);
-    padding: .5rem;
-    background-color: $clr-secondary;
-    border-radius: 8px;
+  display: grid;
+  grid-template-columns: 80% 1fr;
+  gap: 0.5rem;
+  height: min(448px, 448px);
+  padding: 0.5rem;
+  background-color: $clr-secondary;
+  border-radius: 8px;
 
-    &__primary {
+  &__primary {
+    position: relative;
+
+    & img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px 0 0 8px;
+      z-index: 0;
+    }
+
+    & h2 {
+      position: relative;
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.5rem;
+      font-family: $ff-secondary;
+      background-color: rgba(49, 49, 49, 0.7);
+      border-radius: 0.875rem;
+      z-index: 1;
+    }
+  }
+
+  &__secondary {
+    grid-template-rows: repeat(5, 1fr);
+    row-gap: 0.3rem;
+
+    .thumbnail-item {
+      position: relative;
+      justify-content: flex-start;
+      gap: 0.3rem;
+      padding: 0.1rem;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.3s;
+
+      &:active {
+        transform: scale(0.98);
+        background-color: rgba(240, 248, 255, 0.325);
+      }
+
+      & img {
+        width: 56px;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+        border-radius: 8px;
+      }
+
+      & h3 {
         position: relative;
-
-        & img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 8px 0 0 8px;
-            z-index: 0;
-        }
-
-        & h2 {
-            position: relative;
-            display: inline-block;
-            margin: 1rem;
-            padding: .5rem;
-            font-family: $ff-secondary;
-            background-color: rgba(49, 49, 49, 0.7);
-            border-radius: .875rem;
-            z-index: 1;
-        }
+        font-size: $fs-small - 0.125rem;
+        font-weight: 600;
+        pointer-events: none;
+      }
     }
-
-    &__secondary {
-        grid-template-rows: repeat(5, 1fr);
-        row-gap: .3rem;
-
-        .thumbnail-item {
-            position: relative;
-            justify-content: flex-start;
-            gap: .3rem;
-            padding: .1rem;
-            border-radius: 0 8px 8px 0;
-            cursor: pointer;
-            user-select: none;
-            transition: .3s;
-
-            &:active {
-                transform: scale(.98);
-                background-color: rgba(240, 248, 255, 0.325);
-            }
-
-            & img {
-                width: 56px;
-                height: 100%;
-                object-fit: cover;
-                pointer-events: none;
-                border-radius: 8px;
-            }
-
-            & h3 {
-                position: relative;
-                font-size: $fs-small - .125rem;
-                font-weight: 600;
-                pointer-events: none;
-            }
-        }
-    }
+  }
 }
 
 // slider section styles
 .slider {
+  &__swiper {
+    width: 100%;
+    cursor: grab;
+    user-select: none;
+  }
 
-    &__swiper {
-        width: 100%;
-        cursor: grab;
-        user-select: none;
+  &__swiper-wrapper {
+    grid-template-columns: repeat(20, 1fr);
+
+    &:active {
+      cursor: grabbing;
     }
+  }
 
-    &__swiper-wrapper {
-        grid-template-columns: repeat(20, 1fr);
+  &__swiper-slide {
+    height: auto;
+    flex-direction: column;
+    text-transform: capitalize;
 
-        &:active {
-            cursor: grabbing;
-        }
+    a {
+      display: block;
     }
+  }
 
-    &__swiper-slide {
-        height: auto;
-        flex-direction: column;
-        text-transform: capitalize;
+  &-img {
+    width: min(205px, 205px);
+    height: min(274px, 274px);
+    border-radius: 10px;
+    overflow: hidden;
 
-        a {
-            display: block;
-        }
+    img {
+      height: 100%;
     }
+  }
 
-    &-img {
-        width: min(205px, 205px);
-        height: min(274px, 274px);
-        border-radius: 10px;
-        overflow: hidden;
-        
-        img {
-            height: 100%;
-        }
-    }
+  &-details {
+    margin: 1rem 0;
+  }
 
-    &-details {
-        margin: 1rem 0;
-    }
-
-    &-genre {
-        font-size: $fs-small;
-        margin: 6px 0;
-        color: rgba(255, 255, 255, 0.6);
-    }
+  &-genre {
+    font-size: $fs-small;
+    margin: 6px 0;
+    color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 // footer styles
 .footer {
+  &__form {
+    padding: 3rem;
+    gap: 3rem;
+    flex-wrap: wrap;
+    outline: 1px solid $clr-darklight;
+    border-radius: 0.5rem;
 
-    &__form {
-        padding: 3rem;
-        gap: 3rem;
-        flex-wrap: wrap;
-        outline: 1px solid $clr-darklight;
-        border-radius: .5rem;
+    label {
+      font-family: $ff-primary;
+      font-size: $fs-big;
+    }
+  }
 
-        label {
-            font-family: $ff-primary;
-            font-size: $fs-big;
-        }
+  &__input-wrapper {
+    position: relative;
+    width: 350px;
+    max-width: 100%;
+
+    input[type="search"] {
+      padding: 0.5rem 1rem;
+      font-size: $fs-small;
+      color: $clr-dark;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px $clr-primary;
     }
 
-    &__input-wrapper {
-        position: relative;
-        width: 350px;
-        max-width: 100%;
-
-        input[type=search] {
-            padding: .5rem 1rem;
-            font-size: $fs-small;
-            color: $clr-dark;
-            width: 100%;
-            border: none;
-            outline: none;
-            border-radius: 8px;
-            box-shadow: 2px 2px  10px $clr-primary;
-        }
-
-        input[type=submit] {
-            @extend %button;
-            position: absolute;
-            right: 0rem;
-            height: 100%;
-            border-radius: 0 5px 5px 0;
-        }
+    input[type="submit"] {
+      @extend %button;
+      position: absolute;
+      right: 0rem;
+      height: 100%;
+      border-radius: 0 5px 5px 0;
     }
+  }
 
-    &__menu-wrapper {
-        justify-content: space-between;
+  &__menu-wrapper {
+    justify-content: space-between;
+  }
+
+  &__menu {
+    gap: 1.5rem;
+  }
+
+  &__menu-link {
+    @extend %link;
+  }
+
+  &__socials {
+    gap: 1.5rem;
+
+    img {
+      max-width: 24px;
+      max-height: 24px;
     }
-
-    &__menu {
-        gap: 1.5rem;
-    }
-
-    &__menu-link {
-        @extend %link;
-    }
-
-    &__socials {
-        gap: 1.5rem;
-
-        img {
-            max-width: 24px;
-            max-height: 24px;
-        }
-    }
+  }
 }
 
 #test {
-    width: 200px;
-    height: 200px;
-    background-color: rgb(66, 45, 45);
-    color: #fff;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(66, 45, 45);
+  color: #fff;
 }
 
-@import 'responsive';
+@import "responsive";

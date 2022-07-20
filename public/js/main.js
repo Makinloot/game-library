@@ -1,22 +1,20 @@
-import 'https://unpkg.com/swiper/swiper-bundle.min.js';
+import "https://unpkg.com/swiper/swiper-bundle.min.js";
 window.onload = async (e) => {
-    const res = await fetch('/api');
-    const data = await res.json();
-    console.log(data);
-    renderSlider(data);
-    random150();
-    swiperFree();
-}
+  const res = await fetch("/api");
+  const data = await res.json();
+  console.log(data);
+  renderSlider(data);
+  random150();
+  swiperFree();
+};
 
 async function random150() {
-  const s_res = await fetch('/slider');
+  const s_res = await fetch("/slider");
   const s_data = await s_res.json();
 
   sliderData(s_data);
-  // queryGameId(s_data);
   idInSession();
 }
-
 
 // get data for hero section slider from api, initialize slider, add change slider function
 function renderSlider(data) {
@@ -24,9 +22,9 @@ function renderSlider(data) {
   const results = data.results;
   const choices = results.sort(() => Math.random() - 0.5).slice(0, 5);
 
-  // display data for current image 
-  const currentImg = document.getElementById('current-img');
-  const imagesArray = document.getElementById('thumbnail-images');  
+  // display data for current image
+  const currentImg = document.getElementById("current-img");
+  const imagesArray = document.getElementById("thumbnail-images");
   let currentBG = choices[0].background_image;
   let mainHeader = choices[0].name;
 
@@ -36,7 +34,7 @@ function renderSlider(data) {
   `;
 
   // display data for thumbnail
-  choices.forEach( choice => {
+  choices.forEach((choice) => {
     const root = `
       <div class='thumbnail-item flex'>
         <img src=${choice.background_image} alt=${choice.name}>
@@ -45,11 +43,11 @@ function renderSlider(data) {
     imagesArray.innerHTML += root;
   });
 
-  const thumbImages = document.querySelectorAll('.thumbnail-item');
+  const thumbImages = document.querySelectorAll(".thumbnail-item");
   // change main img on thumbnail click
-  thumbImages.forEach(item => {
-    item.addEventListener('click', (e) => {
-      currentImg.innerHTML = ''; // delete current img HTML
+  thumbImages.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      currentImg.innerHTML = ""; // delete current img HTML
       const children = []; // push clicked element in children array
       children.push(e.target);
       // elements from children array
@@ -66,18 +64,17 @@ function renderSlider(data) {
 
 // initialize swiperjs slider
 
-
 function swiperFree() {
-  const {width} = document.body.getBoundingClientRect();
+  const { width } = document.body.getBoundingClientRect();
   let slidePerView = 4.8;
 
-  if(width < 1024) slidePerView = 3.5;
-  if(width < 768) slidePerView = 3;
-  if(width < 640) slidePerView = 2.5;
-  if(width < 525) slidePerView = 2.2;
-  if(width < 480) slidePerView = 1.8;
-  if(width < 385) slidePerView = 1.5;
-  if(width < 320) slidePerView = 1.3;
+  if (width < 1024) slidePerView = 3.5;
+  if (width < 768) slidePerView = 3;
+  if (width < 640) slidePerView = 2.5;
+  if (width < 525) slidePerView = 2.2;
+  if (width < 480) slidePerView = 1.8;
+  if (width < 385) slidePerView = 1.5;
+  if (width < 320) slidePerView = 1.3;
 
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: slidePerView,
@@ -96,15 +93,18 @@ function sliderData(data) {
   const sliderWrapper = document.getElementById("free-mode-slider");
   let sliderItems = data.results;
   // console.log(sliderItems);
-  sliderItems.forEach( item => {
-    let genres = item.genres.map((genre) => genre.name).slice(0, 2).join(', '); // select first two name from genres array
+  sliderItems.forEach((item) => {
+    let genres = item.genres
+      .map((genre) => genre.name)
+      .slice(0, 2)
+      .join(", "); // select first two name from genres array
     let sliderPaths = {
       img: item.background_image,
       name: item.name,
       genre: genres,
       rating: item.rating,
       ratings_count: item.ratings_count,
-      id: item.id
+      id: item.id,
     };
 
     // slider HTML
@@ -125,11 +125,11 @@ function sliderData(data) {
 
 // returns clicked item id and saves in session storage
 function idInSession() {
-  const games = document.querySelectorAll('.swiper-slide');
-  games.forEach(game => {
-    game.addEventListener('click', (e) => {
+  const games = document.querySelectorAll(".swiper-slide");
+  games.forEach((game) => {
+    game.addEventListener("click", (e) => {
       let id = e.target.id;
-      sessionStorage.setItem('id', id);
-    })
-  })
+      sessionStorage.setItem("id", id);
+    });
+  });
 }

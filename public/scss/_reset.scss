@@ -1,23 +1,22 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: $ff-primary;
-    color: $clr-light;
-    font-size: $fs-regular;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $ff-primary;
+  color: $clr-light;
+  font-size: $fs-regular;
 }
 
 body {
-    background-color: rgb(10, 22, 34);
+  background-color: rgb(10, 22, 34);
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 img {
-    width: 100%;
-    // height: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }

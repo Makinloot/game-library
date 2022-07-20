@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="../css/style.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body class="p-1">
     <header class="header py-2">
       <div class="container">
         <div class="header__wrapper wrapper flex">
           <div class="header__logo">
-            <!-- <h1>GameLibrary</h1> -->
             <a href="../index.html">
               <img src="../images/logo.png" alt="logo" />
             </a>
@@ -30,11 +29,13 @@
     <main class="main my-2">
       <div class="container">
         <div class="game wrapper grid" id="game-wrapper">
+          <h2 class="game__name" id="game-name"></h2>
           <div class="game__slider">
             <div class="game__swiper swiper mySwiper">
-              <div class="game__swiper-wrapper swiper-wrapper" id="game-slider-main">
-
-              </div>
+              <div
+                class="game__swiper-wrapper swiper-wrapper"
+                id="game-slider-main"
+              ></div>
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
             </div>
