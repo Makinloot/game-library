@@ -1,32 +1,45 @@
 .list {
-    grid-template-rows: repeat(10, 1fr);
+  gap: 0.5rem;
 
-    &__item {
-        justify-content: flex-start;
-        gap: 1rem;
-        background-color: red;
+  &__item {
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.2rem;
+    cursor: pointer;
+
+    &:nth-child(odd) {
+      background-color: #11263a;
     }
 
-    &__img {
-        width: 200px;
-        height: 100px;
-
-        img {
-            height: 100%;
-        }
+    &:nth-child(odd):hover {
+      background-color: #142d44;
     }
 
-    &__item-details {
-        p {
-            width: 200px;
-            max-width: 100%;
-        }
-        img {
-            width: 20px;
-        }
+    &:nth-child(even):hover {
+      background-color: #11263a;
     }
+  }
 
-    &__release {
-        margin-left: 20%;
+  &__img {
+    width: 200px;
+    height: 100px;
+
+    img {
+      height: 100%;
     }
+  }
+
+  &__item-details {
+    p {
+      width: 200px;
+      max-width: 100%;
+    }
+    img {
+      width: 20px;
+    }
+  }
+
+  &__release {
+    margin-left: 20%;
+  }
 }

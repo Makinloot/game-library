@@ -16,7 +16,7 @@ app.get("/api", async (req, res) => {
   if (randomNumber < 1) randomNumber++;
 
   // fetch RAWG api
-  const url = `https://api.rawg.io/api/games?key=${KEY}&page=${randomNumber}`;
+  const url = `https://api.rawg.io/api/games?key=${KEY}&page=${randomNumber}&ordering=-rating&metacritic=70,100`;
   const game_res = await fetch(url);
   const game_data = await game_res.json();
 
@@ -29,7 +29,7 @@ app.get("/slider", async (req, res) => {
   if (randomNumber < 1) randomNumber++;
 
   // fetch RAWG api
-  const url = `https://api.rawg.io/api/games?key=${KEY}&page=${randomNumber}`;
+  const url = `https://api.rawg.io/api/games?key=${KEY}&page=${randomNumber}&metacritic=50,100`;
   const game_res = await fetch(url);
   const game_data = await game_res.json();
 
@@ -55,9 +55,10 @@ app.post("/games", async (req, res) => {
   res.json(dataObject);
 });
 
+// send RAWG api data according to requested name
 app.post('/list', async (req, res) => {
   const name = req.body.name;
-  const url = `https://api.rawg.io/api/games?key=${KEY}&search=${name}&search_precise=true&ordering=-rating&page_size=10&exclude_additions=true`;
+  const url = `https://api.rawg.io/api/games?key=${KEY}&search=${name}&search_precise=true&search_exact=true&exclude_additions=true&ordering=-rating&page_size=7&metacritic=10,100`;
   const resp = await fetch(url);
   const data = await resp.json();
 

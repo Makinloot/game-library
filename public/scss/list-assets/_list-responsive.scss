@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+  .list {
+    &__item {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    &__release {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .list {
+    &__item {
+      padding: 0.2rem;
+      justify-content: center;
+    }
+  }
+}

@@ -14,19 +14,17 @@ window.onload = async () => {
     const data = await res.json();
 
     console.log(data);
-    displayListData(data);
+    if(data.count > 0) {
+      displayListData(data);
+    } else {
+      displayError();
+    }
 }
 
+// display data for search.html
 function displayListData(data) {
   let results = data.results;
   console.log(results);
-
-  // const listData = {
-  //   background: results.background_image,
-  //   name: results.name,
-  //   date: results.released,
-
-  // }
 
   const wrapper = document.getElementById('game-list');
   results.forEach(result => {
@@ -50,12 +48,22 @@ function displayListData(data) {
           </div>
         </div>
         <div class='list__release'>
-          <p>${listData.date}</p>
+          <p>Released: ${listData.date}</p>
         </div>
       </div>
     `
     wrapper.innerHTML += html;
   });
+}
+
+// display error if no data is returned
+function displayError() {
+  const wrapper = document.getElementById('game-list');
+  let html = `
+    <div class='game__error-wrapper flex'>
+      <p>0 results match your search</p>
+    </div>`;
+  wrapper.innerHTML = html;
 }
 
 const searchInput = document.getElementById('search');
