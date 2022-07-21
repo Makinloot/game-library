@@ -115,5 +115,4 @@ const searchBtn = document.getElementById('search-btn');
 searchBtn.addEventListener('click', (e) => {
     let value = searchInput.value;
     sessionStorage.setItem('name', value);
-    console.log(value);
 });

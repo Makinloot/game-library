@@ -24,7 +24,6 @@ window.onload = async () => {
 // display data for search.html
 function displayListData(data) {
   let results = data.results;
-  console.log(results);
 
   const wrapper = document.getElementById('game-list');
   results.forEach(result => {
@@ -33,11 +32,11 @@ function displayListData(data) {
       background: result.background_image,
       name: result.name,
       date: result.released,
-  
+      id: result.id
     }
     
     let html = `
-      <div class='list__item flex'>
+      <a href='../html/game.html' title=${listData.id} class='list__item flex'>
         <div class='list__img'>
           <img src=${listData.background} alt=${listData.name}>
         </div>
@@ -50,10 +49,19 @@ function displayListData(data) {
         <div class='list__release'>
           <p>Released: ${listData.date}</p>
         </div>
-      </div>
+      </a>
     `
     wrapper.innerHTML += html;
   });
+
+  // get id from clicked element and save in session storage
+  const items = document.querySelectorAll('.list__item');
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      let id = e.target.attributes.title.value;
+      sessionStorage.setItem('id', id);
+    })
+  })
 }
 
 // display error if no data is returned
@@ -66,11 +74,12 @@ function displayError() {
   wrapper.innerHTML = html;
 }
 
+// get id from clicked element and save in session storage
+
 const searchInput = document.getElementById('search');
 const searchBtn = document.getElementById('search-btn');
 
 searchBtn.addEventListener('click', (e) => {
     let value = searchInput.value;
     sessionStorage.setItem('name', value);
-    console.log(value);
 });
