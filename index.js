@@ -14,7 +14,7 @@ app.use(express.json({ limit: "1mb" }));
 
 // send RAWG api data to hero section (thumbnail slider)
 app.get("/api", async (req, res) => {
-  let randomNumber = Math.floor(Math.random() * 50); // random number up to 50
+  let randomNumber = Math.floor(Math.random() * 15); // random number up to 15
   if (randomNumber < 1) randomNumber++;
 
   // fetch RAWG api
