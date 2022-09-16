@@ -25,7 +25,20 @@ window.onload = async () => {
   const media_data = data.media_data;
   displayGameSliderData(media_data);
   runSlider();
+
+  const additions_data = data.additions;
+  const trailer_data = data.trailer;
+  let count = additions_data.count;
+  let trailerCount = trailer_data.count;
+  ifDataExists(count, displayGameAdditions(additions_data));
+  ifDataExists(trailerCount, displayTrailer(trailer_data));
 };
+
+// if data doesn't exist ignore it
+function ifDataExists(int, func) {
+  if(int === 0) return;
+  else func;
+}
 
 // data for game details
 function displayGameData(data) {
@@ -40,7 +53,9 @@ function displayGameData(data) {
     .join(", ");
   // return maximum 3 publishers from publishers
   const publishers = data.publishers;
-  let publishersNames = publishers.map(publisher => publisher.name).join(', ')
+  let publishersNames = publishers
+    .map((publisher) => publisher.name)
+    .join(", ");
 
   // game data object
   const gameData = {
@@ -52,7 +67,7 @@ function displayGameData(data) {
     reviews_title: data.ratings[0].title,
     reviews_percent: data.ratings[0].percent,
     reviews_count: data.ratings_count,
-    publishers: publishersNames
+    publishers: publishersNames,
   };
 
   let html = `
@@ -99,6 +114,20 @@ function displayGameSliderData(data) {
   });
 }
 
+// game trailers
+function displayTrailer(data) {
+  const wrapper = document.getElementById("game-slider-main");
+  const sliderItem = `
+  <div class='game__swiper-slide swiper-slide' id='first-slide'>
+      <video controls>
+        <source src=${data.results[0].data.max} type='video/mp4'>
+      </video>
+  </div>
+`;
+
+wrapper.innerHTML += sliderItem;
+}
+
 // initialize swiper
 function runSlider() {
   const swiper = new Swiper(".mySwiper", {
@@ -107,12 +136,60 @@ function runSlider() {
       prevEl: ".swiper-button-prev",
     },
   });
+  // var swiper = new Swiper(".mySwiper", {
+  //   loop: true,
+  //   navigation: {
+  //     nextEl: ".swiper-button-next",
+  //     prevEl: ".swiper-button-prev",
+  //   },
+  // });
 }
 
-const searchInput = document.getElementById('search');
-const searchBtn = document.getElementById('search-btn');
+// display game additions data
+function displayGameAdditions(data) {
+  const wrapper = document.getElementById('additions-wrapper');
+  const heading = document.getElementById('additions-heading');
+  const results = data.results;
 
-searchBtn.addEventListener('click', (e) => {
-    let value = searchInput.value;
-    sessionStorage.setItem('name', value);
+  results.forEach(result => {
+    const name = result.name;
+    const id = result.id;
+
+    let html = `
+      <a href='../html/game.html' class='additions__item' id=${id}>${name}</a>
+    `;
+
+    wrapper.innerHTML += html;
+  });
+
+  // if(wrapper.childNodes === heading) console.log('red');
+  // else console.log('black');
+
+  const wrapperItems = document.querySelectorAll('.additions__item');
+  wrapperItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const id = e.target.id;
+      sessionStorage.setItem('id', id);
+    })
+  });
+}
+
+// // game trailers
+// function displayTrailer(data) {
+//   const wrapper = document.getElementById("game-slider-main");
+//   const sliderItem = `
+//   <div class='game__swiper-slide swiper-slide' id='first-slide'>
+//       <img src='../images/test.jpg'>
+//   </div>
+// `;
+
+// wrapper.innerHTML += sliderItem;
+// }
+
+const searchInput = document.getElementById("search");
+const searchBtn = document.getElementById("search-btn");
+
+searchBtn.addEventListener("click", (e) => {
+  let value = searchInput.value;
+  sessionStorage.setItem("name", value);
 });

@@ -2,6 +2,7 @@ import express from "express";
 import fetch from "node-fetch";
 import "dotenv/config";
 
+
 const app = express();
 
 let port = process.env.PORT || 3000;
@@ -9,6 +10,7 @@ let KEY = process.env.API_KEY; // api key
 app.listen(port, console.log("running..."));
 app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
+dotenv.config();
 
 // send RAWG api data to hero section (thumbnail slider)
 app.get("/api", async (req, res) => {
@@ -36,7 +38,7 @@ app.get("/slider", async (req, res) => {
   res.json(game_data); // send fetched data
 });
 
-// send RAWG api data & screenshots according to requested ID
+// send RAWG api game data, additions & screenshots according to requested ID
 app.post("/games", async (req, res) => {
   const id = req.body.id;
   const url = `https://api.rawg.io/api/games/${id}?key=${KEY}`;
@@ -47,9 +49,19 @@ app.post("/games", async (req, res) => {
   const mediaResp = await fetch(mediaUrl);
   const mediaData = await mediaResp.json();
 
+  const additionsUrl = `https://api.rawg.io/api/games/${id}/additions?key=${KEY}`;
+  const additionsResp = await fetch(additionsUrl);
+  const additionsData = await additionsResp.json();
+
+  const movieUrl = `https://api.rawg.io/api/games/${id}/movies?key=${KEY}`;
+  const movieResp = await fetch(movieUrl);
+  const movieData = await movieResp.json();
+
   const dataObject = {
     game_data: data,
     media_data: mediaData,
+    additions: additionsData,
+    trailer: movieData
   };
 
   res.json(dataObject);
