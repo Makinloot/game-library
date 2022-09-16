@@ -1,16 +1,16 @@
 import express from "express";
 import fetch from "node-fetch";
-import "dotenv/config";
+import dotenv from 'dotenv';
 
 
 const app = express();
+dotenv.config();
 
 let port = process.env.PORT || 3000;
 let KEY = process.env.API_KEY; // api key
 app.listen(port, console.log("running..."));
 app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
-dotenv.config();
 
 // send RAWG api data to hero section (thumbnail slider)
 app.get("/api", async (req, res) => {
